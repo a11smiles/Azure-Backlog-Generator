@@ -1,11 +1,11 @@
 
-# Cloud Adoption Framework (CAF) Backlog
-This repository contains scripts to automate the building of a backlog of stories required for one to adequately conduct and implement the Cloud Adoption Framework (CAF). The scripts can build the backlog in either Azure DevOps or GitHub.
+# Cloud Adoption Framework (CAF) Backlog for Landing Zone Implementation
+This repository contains scripts to automate the building of a backlog of stories required for one to adequately conduct and successfully implement landing zones for the Cloud Adoption Framework (CAF). The scripts can build the backlog in either Azure DevOps or GitHub.
 
 ## Overview
 The [Microsoft Cloud Adoption Framework for Azure](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/) is the One Microsoft approach to cloud adoption in Azure, consolidating and shaping proven practices from Microsoft employees, partners, and customers.
 
-Proper implementation of CAF requires solid architecture and migration experience along with rigorous amounts effort by Microsoft and the customer. Migration of on-premises workloads to the cloud is no small feat and includes many steps. Therefore, in order to assist cloud architects with migrating customers, those necessary steps have been compiled into a list of backlog items. This backlog will enable the cloud architect to manage an adoption and migration path in alignment to CAF.
+Proper implementation of CAF, in order to establish a foundational landing zone, requires solid architecture and migration experience along with rigorous amounts of effort by Microsoft and the customer. Migration of on-premises workloads to the cloud is no small feat and includes many steps. Therefore, in order to assist cloud architects with migrating customers, those necessary steps have been compiled into a list of backlog items. This backlog will enable the cloud architect to manage an adoption and migration path in alignment to CAF to "land" the customer workloads in Azure.
 
 ## Execution
 Prior to execution, please take a moment to fully read through the documentation below.
