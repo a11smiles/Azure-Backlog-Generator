@@ -79,13 +79,14 @@ The directory structure follows a very simplistic heirarchy to fascilitate depen
 {
     "title": "Work Item Title",
     "description": "Some description of the work item",
-    "tag": "Strategy | Plan | Ready | Innovation | Migration",
+    "tag": "Strategy | Plan | Ready | Innovation | Migration | First Workload | First Host | Workload Template",
     "parent": "E## | F## | S##"
 }
 ```
 
 **NOTE:** The `parent` refers to an epic, feature, or use story and is referenced by the appropriate letter and id as described above in the directory structure. All parent properties for epics will be ignored.
 
+Tags **must** be one of those provided in the list above in order to correspond to the CAF mdoel.
 
 ## Contributing
 Your experience and feedback are valuable and, therefore, your contributions are welcomed. Please create necessary issues and, optionally, pull requests for your feedback or contributions. Please adhere to the technical guidelines above when contributing to the source code.
