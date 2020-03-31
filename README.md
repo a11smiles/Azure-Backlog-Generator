@@ -48,45 +48,51 @@ Tags will be created and applied in both platforms (in GitHub as _Labels_).
 ### Directory Structure
 The directory structure follows a very simplistic heirarchy to fascilitate dependency creation and increase efficiency by minimizing overhead:
 ```
-
 .
-├── src               (source code)
-├── tests             (unit tests)
+├── src                (source code)
+├── tests              (unit tests)
 └── workitems
-    ├── epics
-    │   ├── E01_SampleEpic1.json
-    │   ├── E02_SampleEpic2.json
-    │   └── E03_SampleEpic3.json
-    ├── features
-    │   ├── F01_SampleFeature1.json
-    │   └── F02_SampleFeature2.json
-    ├── stories
-    │   ├── S01_SampleStory1.json
-    │   ├── S02_SampleStory2.json
-    │   └── S03_SampleStory3.json
-    └── tasks
-        ├── T01_SampleTask1.json
-        ├── T01_SampleTask1.json
-        ├── T01_SampleTask1.json
-        ├── T01_SampleTask1.json
-        ├── T01_SampleTask1.json
-        └── T01_SampleTask1.json
+    ├── 01_SampleEpic1
+    │   ├── metadata.json
+    │   └── 01_SampleFeature1
+    │       ├── metadata.json
+    │       └── 01_SampleStory1
+    │           ├── metadata.json
+    │           ├── 01_SampleTask1
+    │           │   └── metadata.json
+    │           └── 02_SampleTask2
+    │               └── metadata.json
+    └── 02_SampleEpic2
+        ├── metadata.json
+        ├── 01_SampleFeature1
+        │   ├── metadata.json
+        │   └── 01_SampleStory1
+        │       ├── metadata.json
+        │       └── 01_SampleTask1
+        │           └── metadata.json
+        └── 02_SampleFeature2
+            ├── metadata.json
+            └── 01_SampleStory1
+                ├── metadata.json
+                ├── 01_SampleTask1
+                │   └── metadata.json
+                └── 02_SampleTask2
+                    └── metadata.json
 
 ```
+The heirarchy above follows the structure of `Epic -> Feature -> User Story -> Task`. Each folder will contain a `metadata.json` file that follows the *Work Item Format* below and child items. Task folders will not contain any child work items and should only contain its metadata.
 
 ### Work Item Format
+The format of the `metadata.json` file is the following:
 ```json
 {
     "title": "Work Item Title",
     "description": "Some description of the work item",
     "tag": "Strategy | Plan | Ready | Innovation | Migration | First Workload | First Host | Workload Template",
-    "parent": "E## | F## | S##"
 }
 ```
 
-**NOTE:** The `parent` refers to an epic, feature, or use story and is referenced by the appropriate letter and id as described above in the directory structure. All parent properties for epics will be ignored.
-
-Tags **must** be one of those provided in the list above in order to correspond to the CAF mdoel.
+**NOTE:** Tags **must** be one of those provided in the list above in order to correspond to the CAF mdoel.
 
 ## Contributing
 Your experience and feedback are valuable and, therefore, your contributions are welcomed. Please create necessary issues and, optionally, pull requests for your feedback or contributions. Please adhere to the technical guidelines above when contributing to the source code.
