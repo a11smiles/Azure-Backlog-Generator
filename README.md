@@ -89,11 +89,11 @@ The format of the `metadata.json` file is the following:
     "title": "Work Item Title",
     "description": "Some description of the work item",
     "tag": "Strategy | Plan | Ready | Innovation | Migration | First Workload | First Host | Workload Template",
-    "role": "Infra | AppDev | Data | Security"
+    "roles": ["Infra | AppDev | Data | Security"]
 }
 ```
 
-**NOTE:** _Tags_ and _Roles_  **must** be one of those provided in the list above in order to correspond to the CAF model.
+**NOTE:** _Tags_ and _Roles_  **must** be one of those provided in the list above in order to correspond to the CAF model. _Roles_ is an array of available roles.
 
 ## Contributing
 Your experience and feedback are valuable and, therefore, your contributions are welcomed. Please create necessary issues and, optionally, pull requests for your feedback or contributions. Please adhere to the technical guidelines above when contributing to the source code.

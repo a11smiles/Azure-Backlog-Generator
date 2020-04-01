@@ -2,5 +2,5 @@
     "title": "Initial organizational alignment",
     "description": "Establish a plan for [organizational alignment](https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/organization/index), included defined [RACI diagrams](https://docs.microsoft.com/en-us/azure/architecture/cloud-adoption/organization/raci-alignment).",
     "tag": "Plan",
-    "role": ""
+    "roles": []
 }
