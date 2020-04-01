@@ -13,7 +13,7 @@ Prior to execution, please take a moment to fully read through the documentation
 ### Create a Backlog
 To execute the script:
 ```
-py ./src/create
+python ./src/create
 ```
 
 ### Running Tests
