@@ -17,8 +17,14 @@ py ./src/create
 ```
 
 ### Running Tests
+Unit testing requires the `pytest` package. You will need to install it first to execute unit tests.
 ```
-python -m unittest
+# Run first time to install 'pytest'
+pip install pytest
+
+
+# Autodiscover and execute unit tests
+python -m pytest
 ```
 
 ## Shared Responsibility
