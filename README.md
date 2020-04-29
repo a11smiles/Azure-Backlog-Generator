@@ -13,7 +13,7 @@ Teams seeking to move source code repositories from an on-premsises TFS or Azure
 ## Execution
 Prior to execution, please take a moment to fully read through the documentation below.
 
-The script creates a virtual (in memory) environment using `pipenv` to ensure that all necessary dependencies are installed and available. For those of you who are familiar with Node, this is similar to the Node Package Manager (`npm`).
+The script creates a safe, virtual (in memory) environment using `pipenv` to ensure that all necessary dependencies are installed and available. For those of you who are familiar with Node, this is similar to the Node Package Manager (`npm`).
 
 ### Installing Dependencies and Cloning the Project
 1. To install `pipenv` for ensuring dependencies are available:
