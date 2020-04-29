@@ -15,16 +15,21 @@ Prior to execution, please take a moment to fully read through the documentation
 
 The script creates a virtual (in memory) environment using `pipenv` to ensure that all necessary dependencies are installed and available. For those of you who are familiar with Node, this is similar to the Node Package Manager (`npm`).
 
-### Installing Dependencies
-To install `pipenv` for ensuring dependencies are available:
-```
-pip install --user pipenv
-```
-The following dependencies are installed and made available to the application:
-```
-pytest
-PyGitHub
-```
+### Installing Dependencies and Cloning the Project
+1. To install `pipenv` for ensuring dependencies are available:
+   ```
+   pip install --user pipenv
+   ```
+   The following dependencies will be installed and made available to the application:
+   ```
+   pytest
+   PyGitHub
+   ```
+2. Clone the repo
+   ```
+   git clone https://github.com/Azure/Migration-Backlog-Generator generator
+   cd generator
+   ```
 
 ### Create a Backlog
 To create a backlog:
