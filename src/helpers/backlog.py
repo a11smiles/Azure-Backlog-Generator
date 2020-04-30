@@ -1,4 +1,4 @@
-from src.entities import *
+import entities
 
 class Backlog():
 

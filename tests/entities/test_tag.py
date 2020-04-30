@@ -1,18 +1,18 @@
 import pytest
 from typing import *
-from src.entities import Tag
+import src.entities as entities
 
 def test_initTag():
-    t = Tag()
-    assert isinstance(t, Tag)
+    t = entities.Tag()
+    assert isinstance(t, entities.Tag)
 
 def test_setTitleToString():
-    t = Tag()
+    t = entities.Tag()
     t.title = "Test"
     assert t.title == "Test"
 
 def test_setTitleToNumber():
-    t = Tag()
+    t = entities.Tag()
 
     with pytest.raises(TypeError) as exc:
         t.title = 42

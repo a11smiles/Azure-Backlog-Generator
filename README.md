@@ -34,7 +34,7 @@ The script creates a safe, virtual (in memory) environment using `pipenv` to ens
 ### Create a Backlog
 To create a backlog:
 ```
-pipenv run python ./src/create
+pipenv run python ./src/mbgenerate
 ```
 
 ### Running Tests

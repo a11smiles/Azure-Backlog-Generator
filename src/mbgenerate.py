@@ -1,6 +1,6 @@
 import argparse
-from helpers import *
-from services import *
+import helpers
+import services
 
 parser = argparse.ArgumentParser(description="Generate a backlog of workitems for migration.")
 parser.add_argument('-t', '--token', required=True, help="GitHub or Azure DevOps token")
@@ -18,7 +18,7 @@ args = parser.parse_args()
 
 print(args.token)
 
-f = FileSystem()
+f = helpers.FileSystem()
 files = f.getFiles('./workitems/caf')
 #files = f.getFiles('./tests/helpers/sample_path')
 for file in files:

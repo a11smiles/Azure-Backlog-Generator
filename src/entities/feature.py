@@ -1,5 +1,5 @@
 from typing import *
-from .userStory import UserStory
+from .userstory import UserStory
 from .tag import Tag
 
 class Feature():
