@@ -26,3 +26,22 @@ class GitHub():
 
     def createOrgRepo(self, orgName, name):
         return self.getOrg(orgName).create_repo(name=f'{name}', has_issues=True, auto_init=True, private=True)
+
+    def createProject(self, repo, name):
+        return repo.create_project(name)
+
+    def createMilestone(self, repo, title):
+        return repo.create_milestone(title)
+
+    def createLabel(self, repo, name):
+        return repo.create_label(name)
+
+    def createLabels(self, repo, names):
+        labels = []
+        for name in names:
+            labels.extend(self.createLabel(repo, name))
+
+        return labels
+
+    def createIssue(self, repo, milestone, title, body, labels):
+        return repo.create_issue(title, body=body, milestone=milestone, labels=labels)

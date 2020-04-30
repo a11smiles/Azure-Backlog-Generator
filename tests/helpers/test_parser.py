@@ -1,4 +1,4 @@
-from src.helpers.parser import Parser
+from src.helpers import Parser
 
 def test_parse():
     p = Parser()

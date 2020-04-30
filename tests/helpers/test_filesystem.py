@@ -1,4 +1,4 @@
-from src.helpers.filesystem import FileSystem
+from src.helpers import FileSystem
 
 def test_getFiles():
     f = FileSystem()

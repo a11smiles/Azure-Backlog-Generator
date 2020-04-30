@@ -6,13 +6,12 @@ class FileSystem():
         files = []
         (root, dirNames, fileNames) = next(os.walk(path))
 
+        fileNames.sort()
+        for fileName in fileNames:
+            files.append(os.path.join(path, fileName))
+
         dirNames.sort()
         for dirName in dirNames:
             files.extend(self.getFiles(os.path.join(root, dirName)))
 
-
-        fileNames.sort()
-        for fileName in fileNames:
-            files.append(os.path.join(path, fileName))
-        
         return files
