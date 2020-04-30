@@ -5,7 +5,7 @@ from src.entities import Epic, Feature
 def test_initEpic():
     e = Epic()
     assert isinstance(e, Epic)
-    assert isinstance(e.features, list)
+    assert isinstance(e.features, List)
     assert len(e.features) == 0
 
 def test_setTitleToString():
