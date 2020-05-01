@@ -1,6 +1,8 @@
+#!/usr/bin/env python
+
 import argparse
-import helpers
-import services
+from mbgenerate.helpers import FileSystem
+#import mbgenerate.services
 
 parser = argparse.ArgumentParser(description="Generate a backlog of workitems for migration.")
 parser.add_argument('-t', '--token', required=True, help="GitHub or Azure DevOps token")
@@ -18,7 +20,7 @@ args = parser.parse_args()
 
 print(args.token)
 
-f = helpers.FileSystem()
+f = FileSystem()
 files = f.getFiles('./workitems/caf')
 #files = f.getFiles('./tests/helpers/sample_path')
 for file in files:

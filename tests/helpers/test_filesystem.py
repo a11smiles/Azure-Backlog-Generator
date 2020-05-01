@@ -1,4 +1,4 @@
-import src.helpers as helpers
+import src.mbgenerate.helpers as helpers
 
 def test_getFiles():
     f = helpers.FileSystem()

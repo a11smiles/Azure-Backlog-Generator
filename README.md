@@ -13,43 +13,51 @@ Teams seeking to move source code repositories from an on-premsises TFS or Azure
 ## Execution
 Prior to execution, please take a moment to fully read through the documentation below.
 
-The script creates a safe, virtual (in memory) environment using `pipenv` to ensure that all necessary dependencies are installed and available. For those of you who are familiar with Node, this is similar to the Node Package Manager (`npm`).
-
-### Installing Dependencies and Cloning the Project
-1. To install `pipenv` for ensuring dependencies are available:
-   ```
-   pip install --user pipenv
-   ```
-   The following dependencies will be installed and made available to the application:
-   ```
-   pytest
-   PyGitHub
-   ```
-2. Clone the repo
-   ```
-   git clone https://github.com/Azure/Migration-Backlog-Generator generator
-   cd generator
-   ```
+### Installation
+First, install the `mbgenerate` package:
+```bash
+pip install mbgenerate
+```
 
 ### Create a Backlog
 To create a backlog:
+```bash
+./mbgenerate
 ```
-pipenv run python ./src/mbgenerate
+
+###TODO: Add parameters
+
+## Development
+To contribute to the project from your development environment:
+
+```bash
+git clone https://github.com/Azure/Migration-Backlog-Generator generator
+cd generator
+
+pip install -e .[dev]
+```
+
+The previous commands will clone the repo and not only install the runtime dependencies but also the development dependencies.
+
+### Executing Locally Under Development
+Once you've installed the package locally (e.g. `-e .[dev]` in the previous command), executing the package is a simple as (include the necessary parameters outlined above in the [Create a Backlog](#Create-a-Backlog) section):
+```bash
+./main.py
 ```
 
 ### Running Tests
 To simply execute unit tests:
-```
-pipenv run python -m pytest
+```bash
+python -m pytest
 ```
 
 If you would like to view a coverage report of the unit tests:
-```
+```bash
 # Generate the report using pytest
-pipenv run coverage run -m pytest
+coverage run -m pytest
 
 # View the report, including missing lines
-pipenv run coverage report -m
+coverage report -m
 ```
 
 ## Shared Responsibility

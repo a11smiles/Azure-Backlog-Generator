@@ -1,4 +1,4 @@
-from src.services import GitHub
+from src.mbgenerate.services import GitHub
 
 """
 def test_parse():

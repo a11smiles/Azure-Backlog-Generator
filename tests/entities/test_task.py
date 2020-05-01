@@ -1,6 +1,6 @@
 import pytest
 from typing import *
-import src.entities as entities
+import src.mbgenerate.entities as entities
 
 def test_initEpic():
     task = entities.Task()
