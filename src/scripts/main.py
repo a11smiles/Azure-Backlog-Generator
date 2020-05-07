@@ -26,4 +26,7 @@ args = parser.parse_args()
 #val = helpers.Validation()
 #val.ValidateMetadata(files)
 
+bl = helpers.Backlog()
+bl.generate()
+
 
