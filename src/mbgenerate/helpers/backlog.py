@@ -1,9 +1,26 @@
+import json
+from .filesystem import FileSystem
+from .parser import Parser
+from .validation import Validation
 from .. import entities
 
 class Backlog():
 
-    def ValidateMetadata(self, files):
-        raise NotImplementedError()
+    def gatherWorkItems(self):
+        fs = FileSystem()
+        files = fs.getFiles('./workitems/caf')
+        
+        return files
 
-    def Generate(self, files):
-        raise NotImplementedError()
+    def generate(self):
+        files = self.gatherWorkItems()
+        
+
+        """
+        "
+        " TODO: Figure out proper import and testing of json
+        "
+        """
+
+        #val = Validation()
+        #val.validateMetadata(files)

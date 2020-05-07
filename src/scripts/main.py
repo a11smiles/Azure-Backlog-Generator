@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 
 import argparse
-from mbgenerate.helpers import FileSystem
-#import mbgenerate.services
+import mbgenerate.helpers as helpers
+import mbgenerate.services as services
 
 parser = argparse.ArgumentParser(description="Generate a backlog of workitems for migration.")
 parser.add_argument('-t', '--token', required=True, help="GitHub or Azure DevOps token")
@@ -18,11 +18,12 @@ args = parser.parse_args()
 #gh.createUserRepo("blahblah")
 #gh.createOrgRepo("DiscipledChurch", "blahblah")
 
-print(args.token)
+#print(args.token)
 
-f = FileSystem()
-files = f.getFiles('./workitems/caf')
+#fs = helpers.FileSystem()
+#files = fs.getFiles('./workitems/caf')
 #files = f.getFiles('./tests/helpers/sample_path')
-for file in files:
-    print(file)
+#val = helpers.Validation()
+#val.ValidateMetadata(files)
+
 

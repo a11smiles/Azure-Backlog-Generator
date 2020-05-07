@@ -8,7 +8,8 @@ class FileSystem():
 
         fileNames.sort()
         for fileName in fileNames:
-            files.append(os.path.join(path, fileName))
+            if fileName == 'metadata.json':
+                files.append(os.path.join(path, fileName))
 
         dirNames.sort()
         for dirName in dirNames:

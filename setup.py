@@ -19,6 +19,7 @@ setup(
     ],
     extras_require={
         'dev': [
+            'pyfakefs',
             'pytest',
             'coverage'
         ]
