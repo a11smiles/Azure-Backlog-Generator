@@ -47,4 +47,10 @@ def test_getFiles_PathHasNoMetadata(fs):
     assert "'metadata.json' does not exist in path './pathHasNoMetadata/01_folder'" in str(exc.value)
 
 def test_readFile(fs):
-    pass
+    testContent = '{ "foo": "bar" }'
+    fs.create_file('./testFilePath/testfile.json', contents = testContent)
+
+    f = helpers.FileSystem()
+    readContent = f.readFile('./testFilePath/testfile.json')
+
+    assert readContent == testContent
