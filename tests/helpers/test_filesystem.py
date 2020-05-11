@@ -45,3 +45,6 @@ def test_getFiles_PathHasNoMetadata(fs):
     with pytest.raises(FileNotFoundError) as exc:
         files = f.getFiles('./pathHasNoMetadata')
     assert "'metadata.json' does not exist in path './pathHasNoMetadata/01_folder'" in str(exc.value)
+
+def test_readFile(fs):
+    pass

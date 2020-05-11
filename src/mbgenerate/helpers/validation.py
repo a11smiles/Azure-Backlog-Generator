@@ -17,12 +17,16 @@ class Validation():
         return True
 
     def _validateTags(self, meta) -> (bool, []):
+        # TODO: Add validation for given tags
+
         if "tags" not in meta:
             return (False,)
 
         return True
         
     def _validateRoles(self, meta) -> (bool, []):
+        # TODO: Add validation for given roles
+
         if "roles" not in meta:
             return (False,)
 
@@ -39,11 +43,17 @@ class Validation():
             return False
         
         tags = self._validateTags(json)
-        if (isinstance(tags, bool) and not tags) or (not isinstance(tags, bool) and isinstance(tags[0], bool) and not tags[0]):
+        if (
+                (isinstance(tags, bool) and not tags) or
+                (not isinstance(tags, bool) and isinstance(tags[0], bool) and not tags[0])
+           ):
             return False
         
         roles = self._validateRoles(json)
-        if (isinstance(roles, bool) and not roles) or (not isinstance(roles, bool) and isinstance(roles[0], bool) and not roles[0]):
+        if (
+                (isinstance(roles, bool) and not roles) or 
+                (not isinstance(roles, bool) and isinstance(roles[0], bool) and not roles[0])
+           ):
             return False
 
         return True
