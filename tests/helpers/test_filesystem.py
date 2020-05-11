@@ -1,27 +1,7 @@
 import pytest
 from pyfakefs import fake_filesystem
+from mocks import _mockCorrectFileSystem, _mockParentPathHasFileFileSystem, _mockPathHasNoMetadataFileSystem
 import src.mbgenerate.helpers as helpers
-
-def _mockCorrectFileSystem(fs):
-    fs.create_file('./correct/01_folder/metadata.json')
-    fs.create_file('./correct/01_folder/attachment.doc')
-    fs.create_file('./correct/01_folder/01_folder/metadata.json')
-    fs.create_file('./correct/01_folder/02_folder/metadata.json')
-    fs.create_file('./correct/01_folder/03_folder/metadata.json')
-    fs.create_file('./correct/01_folder/03_folder/attachment.doc')
-    fs.create_file('./correct/02_folder/metadata.json')
-    fs.create_file('./correct/02_folder/01_folder/metadata.json')
-    fs.create_file('./correct/02_folder/02_folder/metadata.json')
-    fs.create_file('./correct/03_folder/metadata.json')
-    fs.create_file('./correct/03_folder/03_folder/metadata.json')
-
-def _mockParentPathHasFileFileSystem(fs):
-    fs.create_file('./parentPathHasFile/metadata.json')
-    fs.create_file('./parentPathHasFile/01_folder/metadata.json')
-    fs.create_file('./parentPathHasFile/01_folder/01_folder/metadata.json')
-
-def _mockPathHasNoMetadataFileSystem(fs):
-    fs.create_file('./pathHasNoMetadata/01_folder/01_folder/metadata.json')
 
 def test_getFiles_CorrectFileSystem(fs):
     _mockCorrectFileSystem(fs)

@@ -4,21 +4,11 @@ from .parser import Parser
 from .validation import Validation
 from .. import entities
 
-"""
-"
-" - 1. Get all files ("gatherWorkItems")
-" - 2. Parse work item heirarchy ("parseWorkItems)
-"   2.1. Validate each metadata file
-"   2.2. Create workitem objects
-" 3. Create backlog
-"
-"""
-
 class Backlog():
 
-    def _gatherWorkItems(self):
+    def _gatherWorkItems(self, path):
         fs = FileSystem()
-        files = fs.getFiles('./workitems/caf')
+        files = fs.getFiles(path)
         
         return files
 
@@ -130,8 +120,8 @@ class Backlog():
         else:
             return None
 
-    def generate(self):
-        files = self._gatherWorkItems()
+    def generate(self, path):
+        files = self._gatherWorkItems(path)
         parsedFiles = self._parseWorkItems(files)
         workItems = self._buildWorkItems(parsedFiles)
 

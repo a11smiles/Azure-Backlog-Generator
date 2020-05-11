@@ -27,6 +27,6 @@ args = parser.parse_args()
 #val.ValidateMetadata(files)
 
 bl = helpers.Backlog()
-bl.generate()
+bl.generate('./workitems/caf')
 
 
