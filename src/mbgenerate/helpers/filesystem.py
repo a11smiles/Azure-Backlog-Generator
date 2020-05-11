@@ -24,3 +24,11 @@ class FileSystem():
             files.extend(self.getFiles(os.path.join(root, dirName)))
 
         return files
+
+    def readFile(self, path):
+        content = None
+        with open(path, 'r') as reader:
+            content = reader.read()
+            reader.close()
+
+        return content
