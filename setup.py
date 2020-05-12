@@ -21,7 +21,8 @@ setup(
         'dev': [
             'pyfakefs',
             'pytest',
-            'coverage'
+            'coverage',
+            'mock'
         ]
     },
     scripts=['src/scripts/main.py']

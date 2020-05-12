@@ -52,7 +52,8 @@ class Backlog():
             epic = entities.Epic()
             epic.title = json["title"]
             epic.description = json["description"]
-            epic.addTag(self._createTag(json["tag"]))
+            for tag in json["tags"]:
+                epic.addTag(self._createTag(tag))
             for role in json["roles"]:
                 epic.addTag(self._createTag(role))
             
@@ -72,7 +73,8 @@ class Backlog():
             feature = entities.Feature()
             feature.title = json["title"]
             feature.description = json["description"]
-            feature.addTag(self._createTag(json["tag"]))
+            for tag in json["tags"]:
+                feature.addTag(self._createTag(tag))
             for role in json["roles"]:
                 feature.addTag(self._createTag(role))
             
@@ -92,7 +94,8 @@ class Backlog():
             story = entities.UserStory()
             story.title = json["title"]
             story.description = json["description"]
-            story.addTag(self._createTag(json["tag"]))
+            for tag in json["tags"]:
+                story.addTag(self._createTag(tag))
             for role in json["roles"]:
                 story.addTag(self._createTag(role))
             
@@ -112,7 +115,8 @@ class Backlog():
             task = entities.Task()
             task.title = json["title"]
             task.description = json["description"]
-            task.addTag(self._createTag(json["tag"]))
+            for tag in json["tags"]:
+                task.addTag(self._createTag(tag))
             for role in json["roles"]:
                 task.addTag(self._createTag(role))
  
