@@ -132,13 +132,122 @@ def test_buildEpic(fs):
     assert epic.features[0].description == "Some Description"
 
 def test_buildFeature(fs):
-    pass
+    _mockCorrectFileSystem(fs)
+
+    def mockParserJsonReturnFeatureJson(*args, **kwargs):
+        content = None
+        with open('./correct/01_folder/02_folder/metadata.json', 'r') as reader:
+            content = reader.read()
+            reader.close()
+
+        return json.loads(content)
+
+    def mockBacklogBuildStoryReturnStory(*args, **kwargs):
+        story = entities.UserStory()
+        story.title = "Some Story"
+        story.description = "Some Description"
+        
+        return story
+
+    def mockFeature(*args, **kwargs):
+        return _mockParsedFileList()[0]["features"][0]
+
+    backlog = helpers.Backlog()
+
+    backlog._getAndValidateJson = MagicMock(return_value=False)
+    feature = backlog._buildFeature(mockFeature())
+    assert feature == None
+
+    backlog._getAndValidateJson = MagicMock(return_value=mockParserJsonReturnFeatureJson())
+    backlog._buildStory = MagicMock(return_value=None)
+    feature = backlog._buildFeature(mockFeature())
+    assert feature.title == "Foo bar"
+    assert feature.description == "Lorem Ipsum 01_folder/02_folder"
+    assert len(feature.tags) == 3
+    assert _contains(feature.tags, lambda tag: tag.title == "01_Folder") == True
+    assert _contains(feature.tags, lambda tag: tag.title == "02_Folder") == True
+    assert _contains(feature.tags, lambda tag: tag.title == "AppDev") == True
+    assert len(feature.userStories) == 0
+    
+    backlog._buildStory = MagicMock(return_value=mockBacklogBuildStoryReturnStory())
+    feature = backlog._buildFeature(mockFeature())
+    assert len(feature.userStories) == 2  # should return 2 instances of the mocked feature since the mocked feature has 2 user stories
+    assert feature.userStories[0].title == "Some Story"
+    assert feature.userStories[0].description == "Some Description"
 
 def test_buildStory(fs):
-    pass
+    _mockCorrectFileSystem(fs)
+
+    def mockParserJsonReturnUserStoryJson(*args, **kwargs):
+        content = None
+        with open('./correct/01_folder/02_folder/metadata.json', 'r') as reader:
+            content = reader.read()
+            reader.close()
+
+        return json.loads(content)
+
+    def mockBacklogBuildTaskReturnTask(*args, **kwargs):
+        task = entities.Task()
+        task.title = "Some Task"
+        task.description = "Some Description"
+        
+        return task
+
+    def mockUserStory(*args, **kwargs):
+        return _mockParsedFileList()[0]["features"][0]["stories"][0]
+
+    backlog = helpers.Backlog()
+
+    backlog._getAndValidateJson = MagicMock(return_value=False)
+    story = backlog._buildStory(mockUserStory())
+    assert story == None
+
+    backlog._getAndValidateJson = MagicMock(return_value=mockParserJsonReturnUserStoryJson())
+    backlog._buildTask = MagicMock(return_value=None)
+    story = backlog._buildStory(mockUserStory())
+    assert story.title == "Foo bar"
+    assert story.description == "Lorem Ipsum 01_folder/02_folder"
+    assert len(story.tags) == 3
+    assert _contains(story.tags, lambda tag: tag.title == "01_Folder") == True
+    assert _contains(story.tags, lambda tag: tag.title == "02_Folder") == True
+    assert _contains(story.tags, lambda tag: tag.title == "AppDev") == True
+    assert len(story.tasks) == 0
+    
+    backlog._buildTask = MagicMock(return_value=mockBacklogBuildTaskReturnTask())
+    story = backlog._buildStory(mockUserStory())
+    print(mockUserStory())
+    assert len(story.tasks) == 2  # should return 2 instances of the mocked story since the mocked story has 2 tasks
+    assert story.tasks[0].title == "Some Task"
+    assert story.tasks[0].description == "Some Description"
 
 def test_buildTask(fs):
-    pass
+    _mockCorrectFileSystem(fs)
+
+    def mockParserJsonReturnTaskJson(*args, **kwargs):
+        content = None
+        with open('./correct/01_folder/02_folder/metadata.json', 'r') as reader:
+            content = reader.read()
+            reader.close()
+
+        return json.loads(content)
+
+    def mockTask(*args, **kwargs):
+        return _mockParsedFileList()[0]["features"][0]["stories"][0]["tasks"][0]
+
+    backlog = helpers.Backlog()
+
+    backlog._getAndValidateJson = MagicMock(return_value=False)
+    task = backlog._buildTask(mockTask())
+    assert task == None
+
+    backlog._getAndValidateJson = MagicMock(return_value=mockParserJsonReturnTaskJson())
+    task = backlog._buildTask(mockTask())
+    assert task.title == "Foo bar"
+    assert task.description == "Lorem Ipsum 01_folder/02_folder"
+    assert len(task.tags) == 3
+    assert _contains(task.tags, lambda tag: tag.title == "01_Folder") == True
+    assert _contains(task.tags, lambda tag: tag.title == "02_Folder") == True
+    assert _contains(task.tags, lambda tag: tag.title == "AppDev") == True
 
 def test_generate():
     def mockGatherWorkItemsReturnFileList(*args, **kwargs):
