@@ -6,12 +6,7 @@ from pyfakefs import fake_filesystem
 from mocks import _mockFileList, _mockParsedFileList, _mockCorrectFileSystem, _mockParsedFileList
 import src.azbacklog.helpers as helpers
 import src.azbacklog.entities as entities
-
-def _contains(list, filter):
-    for x in list:
-        if filter(x):
-            return True
-    return False
+from tests.helpers import Lists
 
 def test_gatherWorkItems(monkeypatch):
     def mockGatherWorkItemsReturnFileList(*args, **kwargs):
@@ -120,9 +115,9 @@ def test_buildEpic(fs):
     assert epic.title == "Foo bar"
     assert epic.description == "Lorem Ipsum 01_folder/02_folder"
     assert len(epic.tags) == 3
-    assert _contains(epic.tags, lambda tag: tag.title == "01_Folder") == True
-    assert _contains(epic.tags, lambda tag: tag.title == "02_Folder") == True
-    assert _contains(epic.tags, lambda tag: tag.title == "AppDev") == True
+    assert Lists.contains(epic.tags, lambda tag: tag.title == "01_Folder") == True
+    assert Lists.contains(epic.tags, lambda tag: tag.title == "02_Folder") == True
+    assert Lists.contains(epic.tags, lambda tag: tag.title == "AppDev") == True
     assert len(epic.features) == 0
     
     backlog._buildFeature = MagicMock(return_value=mockBacklogBuildFeatureReturnFeature())
@@ -164,9 +159,9 @@ def test_buildFeature(fs):
     assert feature.title == "Foo bar"
     assert feature.description == "Lorem Ipsum 01_folder/02_folder"
     assert len(feature.tags) == 3
-    assert _contains(feature.tags, lambda tag: tag.title == "01_Folder") == True
-    assert _contains(feature.tags, lambda tag: tag.title == "02_Folder") == True
-    assert _contains(feature.tags, lambda tag: tag.title == "AppDev") == True
+    assert Lists.contains(feature.tags, lambda tag: tag.title == "01_Folder") == True
+    assert Lists.contains(feature.tags, lambda tag: tag.title == "02_Folder") == True
+    assert Lists.contains(feature.tags, lambda tag: tag.title == "AppDev") == True
     assert len(feature.userStories) == 0
     
     backlog._buildStory = MagicMock(return_value=mockBacklogBuildStoryReturnStory())
@@ -208,9 +203,9 @@ def test_buildStory(fs):
     assert story.title == "Foo bar"
     assert story.description == "Lorem Ipsum 01_folder/02_folder"
     assert len(story.tags) == 3
-    assert _contains(story.tags, lambda tag: tag.title == "01_Folder") == True
-    assert _contains(story.tags, lambda tag: tag.title == "02_Folder") == True
-    assert _contains(story.tags, lambda tag: tag.title == "AppDev") == True
+    assert Lists.contains(story.tags, lambda tag: tag.title == "01_Folder") == True
+    assert Lists.contains(story.tags, lambda tag: tag.title == "02_Folder") == True
+    assert Lists.contains(story.tags, lambda tag: tag.title == "AppDev") == True
     assert len(story.tasks) == 0
     
     backlog._buildTask = MagicMock(return_value=mockBacklogBuildTaskReturnTask())
@@ -245,9 +240,9 @@ def test_buildTask(fs):
     assert task.title == "Foo bar"
     assert task.description == "Lorem Ipsum 01_folder/02_folder"
     assert len(task.tags) == 3
-    assert _contains(task.tags, lambda tag: tag.title == "01_Folder") == True
-    assert _contains(task.tags, lambda tag: tag.title == "02_Folder") == True
-    assert _contains(task.tags, lambda tag: tag.title == "AppDev") == True
+    assert Lists.contains(task.tags, lambda tag: tag.title == "01_Folder") == True
+    assert Lists.contains(task.tags, lambda tag: tag.title == "02_Folder") == True
+    assert Lists.contains(task.tags, lambda tag: tag.title == "AppDev") == True
 
 def test_generate():
     def mockGatherWorkItemsReturnFileList(*args, **kwargs):
