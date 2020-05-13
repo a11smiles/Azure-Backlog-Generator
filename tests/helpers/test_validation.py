@@ -1,4 +1,4 @@
-import src.mbgenerate.helpers as helpers
+import src.azbacklog.helpers as helpers
 
 def test_validateMetadata():
     v = helpers.Validation()

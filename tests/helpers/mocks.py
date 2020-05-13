@@ -1,4 +1,16 @@
 def _mockCorrectFileSystem(fs):
+    fs.create_file('./correct/config.json',
+        contents = '{ \
+                        "tags" : [ \
+                            "01_Folder", \
+                            "02_Folder", \
+                            "03_Folder" \
+                        ], \
+                        "roles": [ \
+                            "Infra", \
+                            "AppDev" \
+                        ] \
+                    }')
     fs.create_file('./correct/01_folder/metadata.json', 
         contents = '{ \
                         "title": "Foo bar", \

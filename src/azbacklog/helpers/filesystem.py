@@ -7,7 +7,13 @@ class FileSystem():
         files = []
         (root, dirNames, fileNames) = next(os.walk(path))
 
-        if self.parentPath == True and len(fileNames) > 0:
+        if (
+                self.parentPath == True and
+                (
+                    (len(fileNames) == 1 and fileNames[0].lower() != 'config.json') or
+                    len(fileNames) > 1
+                )
+           ):
             raise FileExistsError("parent path should not contain any files")
         elif self.parentPath == False and 'metadata.json' not in fileNames:
             raise FileNotFoundError(f"'metadata.json' does not exist in path '{path}'")

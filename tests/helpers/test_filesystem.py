@@ -1,7 +1,7 @@
 import pytest
 from pyfakefs import fake_filesystem
 from mocks import _mockCorrectFileSystem, _mockParentPathHasFileFileSystem, _mockPathHasNoMetadataFileSystem
-import src.mbgenerate.helpers as helpers
+import src.azbacklog.helpers as helpers
 
 def test_getFiles_CorrectFileSystem(fs):
     _mockCorrectFileSystem(fs)

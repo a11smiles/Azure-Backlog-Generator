@@ -1,5 +1,5 @@
 from mocks import _mockFileList, _mockParsedFileList
-import src.mbgenerate.helpers as helpers
+import src.azbacklog.helpers as helpers
 
 def test_parse():
     p = helpers.Parser()

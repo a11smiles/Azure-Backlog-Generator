@@ -4,8 +4,8 @@ import os
 from mock import Mock, MagicMock
 from pyfakefs import fake_filesystem
 from mocks import _mockFileList, _mockParsedFileList, _mockCorrectFileSystem, _mockParsedFileList
-import src.mbgenerate.helpers as helpers
-import src.mbgenerate.entities as entities
+import src.azbacklog.helpers as helpers
+import src.azbacklog.entities as entities
 
 def _contains(list, filter):
     for x in list:
