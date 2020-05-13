@@ -1,6 +1,6 @@
 {
     "title": "Cloud Adoption Plan",
     "description": "Cloud Adoption Plan",
-    "tag": "Plan",
+    "tags": ["Plan"],
     "roles": []
 }

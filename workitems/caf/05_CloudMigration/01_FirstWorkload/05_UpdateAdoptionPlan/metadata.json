@@ -1,6 +1,6 @@
 {
     "title": "Update the adoption plan",
     "description": "Update the migration plan with any process or task changes based on the first workload.",
-    "tag": "First Workload",
+    "tags": ["First Workload"],
     "roles": []
 }

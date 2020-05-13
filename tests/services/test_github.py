@@ -1,6 +1,6 @@
 import pytest
 from mock import Mock, MagicMock, patch
-from github import Github, Repository, Project
+from github import Github, Repository
 from github.AuthenticatedUser import AuthenticatedUser
 from github.Organization import Organization
 from src.mbgenerate.services import GitHub
