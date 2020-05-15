@@ -110,6 +110,19 @@ def _mockFileList():
     
     return files
 
+def _mockConfig():
+    return {
+        "tags" : [
+            "01_Folder",
+            "02_Folder",
+            "03_Folder"
+        ],
+        "roles": [
+            "Infra",
+            "AppDev"
+        ]
+    }
+
 def _mockParsedFileList():
     result = [
         {

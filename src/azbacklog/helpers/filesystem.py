@@ -33,8 +33,13 @@ class FileSystem():
 
     def readFile(self, path):
         content = None
-        with open(path, 'r') as reader:
-            content = reader.read()
-            reader.close()
+        try:
+            with open(path, 'r') as reader:
+                content = reader.read()
+                reader.close()
+        except FileNotFoundError:
+            raise FileNotFoundError(f"'{path}' does not exist")
+        except Exception:
+            raise
 
         return content

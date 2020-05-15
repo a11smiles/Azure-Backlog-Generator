@@ -1,3 +1,4 @@
+import os
 import pytest
 from pyfakefs import fake_filesystem
 from mocks import _mockCorrectFileSystem, _mockParentPathHasFileFileSystem, _mockPathHasNoMetadataFileSystem
@@ -34,3 +35,7 @@ def test_readFile(fs):
     readContent = f.readFile('./testFilePath/testfile.json')
 
     assert readContent == testContent
+   
+    with pytest.raises(FileNotFoundError) as exc:
+        content = f.readFile('./testFilePath/notexist.json')
+    assert "'./testFilePath/notexist.json' does not exist" in str(exc.value)
