@@ -12,8 +12,8 @@ WHen conducting intense processes, it can be helpful to have a list of tasks to 
 ## Currently Supported Backlogs
 Azure Backlog Generator currently supports creating backlogs for the following processes.
 
-- [ ] [Cloud Adoption Framework (CAF)](//github.com/Azure/Azure-Backlog-Generator/backlogs.md#cloud-adoption-framework-caf)
-- [ ] [Team Foundation Server (TFS) to Azure DevOps](//github.com/Azure/Azure-Backlog-Generator/backlogs.md#team-foundation-server-tfs-to-azure-devops)
+- [ ] [Cloud Adoption Framework (CAF)](https://github.com/a11smiles/Azure-Backlog-Generator/blob/master/backlogs.md#cloud-adoption-framework-caf)
+- [ ] [Team Foundation Server (TFS) to Azure DevOps](https://github.com/a11smiles/Azure-Backlog-Generator/blob/master/backlogs.md#team-foundation-server-tfs-to-azure-devops)
 
 ## Execution
 Prior to execution, please take a moment to fully read through the documentation below.
@@ -153,7 +153,7 @@ The format of the `metadata.json` file is the following:
 }
 ```
 
-**NOTE:** _Tags_ and _Roles_  **must** be those provided in the respective list of the corresponding process. The available lists are found with the [backlog descriptions](backlogs.md#backlog-descriptions).
+**NOTE:** _Tags_ and _Roles_  **must** be those provided in the respective list of the corresponding process. The available lists are found with the [backlog descriptions](https://github.com/a11smiles/Azure-Backlog-Generator/blob/master/backlogs.md#backlog-descriptions).
 
 ## Contributing
 Your experience and feedback are valuable and, therefore, your contributions are welcomed. Please create necessary issues and, optionally, pull requests for your feedback or contributions. Please adhere to the technical guidelines above when contributing to the source code.
