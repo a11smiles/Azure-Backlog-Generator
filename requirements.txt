@@ -2,4 +2,4 @@ pyfakefs
 pytest
 coverage
 mock
-github
+pygithub
