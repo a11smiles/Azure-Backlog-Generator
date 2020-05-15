@@ -1,24 +1,76 @@
+# Azure Backlog Generator
+Following repetitive processes and aligning all resources consistently can be a daunting task, and it can be common to overlook a step or make an incorrect assumption. There are many variables to consider in any complex process&mdash;identifying roles, resources, etc. 
 
-# Cloud Adoption Framework (CAF) Backlog for Landing Zone Implementation
-This repository contains scripts to automate the building of a backlog of stories required for one to adequately conduct and successfully implement landing zones for the Cloud Adoption Framework (CAF). The scripts can build the backlog in either Azure DevOps or GitHub.
+WHen conducting intense processes, it can be helpful to have a list of tasks to direct efforts. The Azure Backlog Generator (ABG) is designed to build backlogs for complex processes based on _proven practices_. The backlogs can be generated in either Azure DevOps or GitHub.
 
-## Overview
-The [Microsoft Cloud Adoption Framework for Azure](https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/) is the One Microsoft approach to cloud adoption in Azure, consolidating and shaping proven practices from Microsoft employees, partners, and customers.
+## Currently Supported Backlogs
+Azure Backlog Generator currently supports creating backlogs for the following processes.
 
-Proper implementation of CAF, in order to establish a foundational landing zone, requires solid architecture and migration experience along with rigorous amounts of effort by Microsoft and the customer. Migration of on-premises workloads to the cloud is no small feat and includes many steps. Therefore, in order to assist cloud architects with migrating customers, those necessary steps have been compiled into a list of backlog items. This backlog will enable the cloud architect to manage an adoption and migration path in alignment to CAF to "land" the customer workloads in Azure.
+- [ ] [Cloud Adoption Framework (CAF)](backlogs.md#cloud-adoption-framework-caf)
+- [ ] [Team Foundation Server (TFS) to Azure DevOps](backlogs.md#team-foundation-server-tfs-to-azure-devops)
 
 ## Execution
 Prior to execution, please take a moment to fully read through the documentation below.
 
-### Create a Backlog
-To execute the script:
+### Installation
+First, install the `azbacklog` package:
+```bash
+pip install azbacklog
 ```
-py ./src/create
+
+### Create a Backlog
+To create a backlog:
+```console
+./azbacklog -t TOKEN
+
+
+usage: azbacklog [-h] -t TOKEN [-r {azure,github}] [-p PROJECT] [-o ORG] [-b {caf,tfs}]
+
+Generate a backlog of work items.
+
+optional arguments:
+  -h, --help                                        show this help message and exit
+  -t TOKEN, --token TOKEN                           GitHub or Azure DevOps token
+  -r {azure,github}, --repo {azure,github}          targetted repository type
+  -p PROJECT, --project PROJECT                     project name to create
+  -o ORG, --org ORG                                 Optional. If the target is a GitHub organization,
+                                                    specify the organization's name.
+  -b {caf,tfs}, --backlog {caf,tfs}                 type of backlog to create
+
+```
+
+
+## Development
+To contribute to the project from your development environment:
+
+```console
+git clone https://github.com/Azure/Azure-Backlog-Generator generator
+cd generator
+
+pip install -e .[dev]
+```
+
+The previous commands will clone the repo and not only install the runtime dependencies but also the development dependencies.
+
+### Executing Locally Under Development
+Once you've installed the package locally (e.g. `-e .[dev]` in the previous command), executing the package is as simple as (include the necessary parameters outlined above in the [Create a Backlog](#Create-a-Backlog) section):
+```bash
+./main.py
 ```
 
 ### Running Tests
+To simply execute unit tests:
+```bash
+python -m pytest
 ```
-python -m unittest
+
+If you would like to view a coverage report of the unit tests:
+```bash
+# Generate the report using pytest
+coverage run -m pytest
+
+# View the report, including missing lines
+coverage report -m
 ```
 
 ## Shared Responsibility
@@ -88,12 +140,12 @@ The format of the `metadata.json` file is the following:
 {
     "title": "Work Item Title",
     "description": "Some description of the work item",
-    "tag": "Strategy | Plan | Ready | Innovation | Migration | First Workload | First Host | Workload Template",
-    "role": "Infra | AppDev | Data | Security"
+    "tag": ["Strategy | Plan | Ready | Innovation | Migration | First Workload | First Host | Workload Template"],
+    "roles": ["Infra | AppDev | Data | Security"]
 }
 ```
 
-**NOTE:** _Tags_ and _Roles_  **must** be one of those provided in the list above in order to correspond to the CAF model.
+**NOTE:** _Tags_ and _Roles_  **must** be those provided in the respective list of the corresponding process. The available lists are found with the [backlog descriptions](backlogs.md#backlog-descriptions).
 
 ## Contributing
 Your experience and feedback are valuable and, therefore, your contributions are welcomed. Please create necessary issues and, optionally, pull requests for your feedback or contributions. Please adhere to the technical guidelines above when contributing to the source code.
