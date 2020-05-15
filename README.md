@@ -1,3 +1,7 @@
+[![github](https://github.com/Azure/Azure-Backlog-Generator/workflows/build/badge.svg)](https://github.com/Azure/Azure-Backlog-Generator/workflows/build/badge.svg)
+[![codecov](https://codecov.io/gh/Azure/Azure-Backlog-Generator/branch/master/graph/badge.svg)](https://codecov.io/gh/Azure/Azure-Backlog-Generator)
+[![PyPI version](https://badge.fury.io/py/azbacklog.svg)](https://badge.fury.io/py/azbacklog)
+
 # Azure Backlog Generator
 Following repetitive processes and aligning all resources consistently can be a daunting task, and it can be common to overlook a step or make an incorrect assumption. There are many variables to consider in any complex process&mdash;identifying roles, resources, etc. 
 
@@ -6,8 +10,8 @@ WHen conducting intense processes, it can be helpful to have a list of tasks to 
 ## Currently Supported Backlogs
 Azure Backlog Generator currently supports creating backlogs for the following processes.
 
-- [ ] [Cloud Adoption Framework (CAF)](backlogs.md#cloud-adoption-framework-caf)
-- [ ] [Team Foundation Server (TFS) to Azure DevOps](backlogs.md#team-foundation-server-tfs-to-azure-devops)
+- [ ] [Cloud Adoption Framework (CAF)](//github.com/Azure/Azure-Backlog-Generator/backlogs.md#cloud-adoption-framework-caf)
+- [ ] [Team Foundation Server (TFS) to Azure DevOps](//github.com/Azure/Azure-Backlog-Generator/backlogs.md#team-foundation-server-tfs-to-azure-devops)
 
 ## Execution
 Prior to execution, please take a moment to fully read through the documentation below.
