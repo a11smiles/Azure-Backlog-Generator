@@ -1,0 +1,21 @@
+name: publish
+on:
+  push:
+    branches:
+      - "master"
+  check_suite:
+    types:
+      - complete
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+
+    steps:
+      - name: Publish
+        run: |
+          pip install --upgrade setuptools wheel twine
+          python setup.py sdist bdist_wheel
+          python -m twine upload -u __token__ -p ${{ secrete.PyPl_Token }} dist/*
