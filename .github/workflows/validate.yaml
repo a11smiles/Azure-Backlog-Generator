@@ -42,6 +42,9 @@ jobs:
         with:
           name: coverage-report-${{ matrix.python-version }}
           path: htmlcov
+      - name: Install Module Locally
+        run: |
+          python setup.py install --user
       - name: Validate Backlog Configurations and Work Items
         run: |
           chmod 755 ./validate.sh
