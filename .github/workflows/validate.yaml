@@ -30,7 +30,14 @@ jobs:
         run: |
           coverage run -m pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml
           coverage html
-          coverage xml
+      - name: Run Tests and Generage Coverage Reports
+        uses: paambaati/codeclimate-action@v2.6.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CODE_CLIMATE }}
+        with:
+          coverageCommand: coverage xml
+          coverageLocations: |
+            coverage.xml:xml
       - name: Upload pytest Test Results
         uses: actions/upload-artifact@v1
         with:
