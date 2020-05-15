@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: coverage-report-${{ matrix.python-version }}
-          path: report.xml
+          path: report.txt
       - name: Validate Backlog Configurations and Work Items
         run: |
           chmod 755 ./validate.sh
