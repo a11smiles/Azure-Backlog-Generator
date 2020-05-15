@@ -11,14 +11,6 @@ def run(args):
     #gh.createUserRepo("blahblah")
     #gh.createOrgRepo("DiscipledChurch", "blahblah")
 
-    #print(args.token)
-
-    #fs = helpers.FileSystem()
-    #files = fs.getFiles('./workitems/caf')
-    #files = f.getFiles('./tests/helpers/sample_path')
-    #val = helpers.Validation()
-    #val.ValidateMetadata(files)
-
     bl = helpers.Backlog()
     if (args.validate_only != None):
         bl.build(args.validate_only, True)
