@@ -45,7 +45,7 @@ optional arguments:
 ## Development
 To contribute to the project from your development environment:
 
-```bash
+```
 git clone https://github.com/Azure/Azure-Backlog-Generator generator
 cd generator
 
