@@ -37,7 +37,7 @@ jobs:
         with:
           coverageCommand: coverage xml
           coverageLocations: |
-            coverage.xml:xml
+            coverage.xml:coverage.py
       - name: Upload pytest Test Results
         uses: actions/upload-artifact@v1
         with:
