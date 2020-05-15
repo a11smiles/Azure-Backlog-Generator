@@ -20,7 +20,10 @@ def run(args):
     #val.ValidateMetadata(files)
 
     bl = helpers.Backlog()
-    bl.build('./workitems/caf')
+    if (args.validate_only != None):
+        bl.build(args.validate_only, True)
+    else:
+        bl.build('./workitems/caf')
 
 def main():
     parser = argparse.ArgumentParser(prog='azbacklog', description="Generate a backlog of work items.", allow_abbrev=False)
@@ -29,6 +32,7 @@ def main():
     parser.add_argument('-p', '--project', help="project name to create")
     parser.add_argument('-o', '--org', help="Optional. If the target is a GitHub organization, specify the organization's name.")
     parser.add_argument('-b', '--backlog', choices=['caf', 'tfs'], help="type of backlog to create")
+    parser.add_argument('--validate-only', help=argparse.SUPPRESS)
     parser.set_defaults(func=run)
     args = parser.parse_args()
     args.func(args)
