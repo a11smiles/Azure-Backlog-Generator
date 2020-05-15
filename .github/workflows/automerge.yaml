@@ -32,4 +32,4 @@ jobs:
           MERGE_RETRIES: "36"
           MERGE_RETRY_SLEEP: "10000"
           UPDATE_LABELS: ""
-          UPDATE_METHOD: "rebase"
+          UPDATE_METHOD: "merge"
