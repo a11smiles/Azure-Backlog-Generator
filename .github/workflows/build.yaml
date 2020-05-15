@@ -48,8 +48,3 @@ jobs:
         run: |
           chmod 755 ./validate.sh
           ./validate.sh
-      - name: Publish
-        run: |
-          pip install --upgrade setuptools wheel twine
-          python setup.py sdist bdist_wheel
-          python -m twine upload dist/*
