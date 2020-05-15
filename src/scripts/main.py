@@ -7,9 +7,6 @@ import azbacklog.services as services
 def run(args):
     #gh = GitHub()
     #gh.authenticate(token="2fcaf1dd14b3cdde106b43e859ef4b2b20ee682b")
-    #gh.showRepos()
-    #gh.createUserRepo("blahblah")
-    #gh.createOrgRepo("DiscipledChurch", "blahblah")
 
     bl = helpers.Backlog()
     if (args.validate_only != None):
