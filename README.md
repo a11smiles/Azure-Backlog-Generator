@@ -20,7 +20,7 @@ pip install azbacklog
 
 ### Create a Backlog
 To create a backlog:
-```bash
+```
 ./azbacklog -t TOKEN
 
 
