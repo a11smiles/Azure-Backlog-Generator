@@ -124,7 +124,7 @@ class Backlog():
             return None
 
     def _buildTask(self, item, config):
-        json = self._getAndValidateJson(item["task"])
+        json = self._getAndValidateJson(item["task"], config)
         if json != False:
             task = entities.Task()
             task.title = json["title"]
@@ -139,6 +139,8 @@ class Backlog():
             return None
 
     def build(self, path, validateOnly=False):
+        if validateOnly: print(f"Validating metadata ({path})...")
+
         files = self._gatherWorkItems(path)
         config = self._getConfig(path)
         parsedFiles = self._parseWorkItems(files)

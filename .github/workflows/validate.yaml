@@ -42,3 +42,7 @@ jobs:
         with:
           name: coverage-report-${{ matrix.python-version }}
           path: htmlcov
+      - name: Validate Backlog Configurations and Work Items
+        run: |
+          chmod 755 ./validate.sh
+          ./validate.sh
