@@ -20,16 +20,30 @@ pip install azbacklog
 
 ### Create a Backlog
 To create a backlog:
-```bash
-./azbacklog
+```console
+./azbacklog -t TOKEN
+
+
+usage: azbacklog [-h] -t TOKEN [-r {azure,github}] [-p PROJECT] [-o ORG] [-b {caf,tfs}]
+
+Generate a backlog of work items.
+
+optional arguments:
+  -h, --help                                        show this help message and exit
+  -t TOKEN, --token TOKEN                           GitHub or Azure DevOps token
+  -r {azure,github}, --repo {azure,github}          targetted repository type
+  -p PROJECT, --project PROJECT                     project name to create
+  -o ORG, --org ORG                                 Optional. If the target is a GitHub organization,
+                                                    specify the organization's name.
+  -b {caf,tfs}, --backlog {caf,tfs}                 type of backlog to create
+
 ```
 
-###TODO: Add parameters
 
 ## Development
 To contribute to the project from your development environment:
 
-```bash
+```console
 git clone https://github.com/Azure/Azure-Backlog-Generator generator
 cd generator
 

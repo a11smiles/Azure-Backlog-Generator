@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
 import argparse
-import mbgenerate.helpers as helpers
-import mbgenerate.services as services
+import azbacklog.helpers as helpers
+import azbacklog.services as services
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Generate a backlog of workitems for migration.")
+    parser = argparse.ArgumentParser(prog='azbacklog', description="Generate a backlog of work items.", allow_abbrev=False)
     parser.add_argument('-t', '--token', required=True, help="GitHub or Azure DevOps token")
-    parser.add_argument('-r', '--repo', choices=['azure', 'github'], help="Targetted repository type")
-    parser.add_argument('-p', '--project', help="Project name to create")
+    parser.add_argument('-r', '--repo', choices=['azure', 'github'], help="targetted repository type")
+    parser.add_argument('-p', '--project', help="project name to create")
     parser.add_argument('-o', '--org', help="Optional. If the target is a GitHub organization, specify the organization's name.")
-    parser.add_argument('-m', '--migrate', choices=['caf', 'tfs'], help="Type of migration backlog to create")
+    parser.add_argument('-b', '--backlog', choices=['caf', 'tfs'], help="type of backlog to create")
     args = parser.parse_args()
 
     #gh = GitHub()
@@ -28,6 +28,6 @@ if __name__ == "__main__":
     #val.ValidateMetadata(files)
 
     bl = helpers.Backlog()
-    bl.generate('./workitems/caf')
+    bl.build('./workitems/caf')
 
 
