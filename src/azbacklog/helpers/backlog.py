@@ -3,6 +3,7 @@ from .filesystem import FileSystem
 from .parser import Parser
 from .validation import Validation
 from .. import entities
+from .. import services
 
 class Backlog():
 
@@ -138,10 +139,26 @@ class Backlog():
         else:
             return None
 
-    def build(self, path, validateOnly=False):
-        if validateOnly: print(f"Validating metadata ({path})...")
+    def _deployGitHub(self, args, workitems):
+        github = services.GitHub(token=args.token)
+        github.deploy(args, workitems)
+
+    def _deployAzure(self, args, workitems):
+        # TODO: build out azure devops
+        pass
+
+    def build(self, args):
+        if args.validate_only != None: 
+            path = args.validate_only
+            print(f"Validating metadata ({path})...")
+        else:
+            path = './workitems/' + args.backlog
 
         files = self._gatherWorkItems(path)
         config = self._getConfig(path)
         parsedFiles = self._parseWorkItems(files)
-        workItems = self._buildWorkItems(parsedFiles, config)       
+        workItems = self._buildWorkItems(parsedFiles, config)
+
+        if args.validate_only == None:
+            if args.repo.lower() == 'github':
+                self._deployGitHub(args, workItems)

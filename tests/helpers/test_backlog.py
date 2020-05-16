@@ -1,6 +1,7 @@
 import pytest
 import json
 import os
+from argparse import Namespace
 from mock import Mock, MagicMock
 from pyfakefs import fake_filesystem
 from mocks import _mockConfig, _mockFileList, _mockParsedFileList, _mockCorrectFileSystem, _mockParsedFileList
@@ -325,9 +326,18 @@ def test_build():
     backlog._getConfig = MagicMock(return_value=mockGetConfigReturnConfig())
     backlog._parseWorkItems = MagicMock(return_value=mockParseWorkItemsReturnParsedFileList())
     backlog._buildWorkItems = MagicMock(return_value=None)
-    backlog.build('./path')
-
-    backlog._gatherWorkItems.assert_called_with('./path')
-    backlog._getConfig.assert_called_with('./path')
+    backlog._deployGitHub = MagicMock(return_value=None)
+    backlog._deployAzure = MagicMock(return_value=None)
+    
+    backlog.build(Namespace(backlog='caf', repo='github', validate_only=None))
+    backlog._gatherWorkItems.assert_called_with('./workitems/caf')
+    backlog._getConfig.assert_called_with('./workitems/caf')
     backlog._parseWorkItems.assert_called_with(mockGatherWorkItemsReturnFileList())
     backlog._buildWorkItems.assert_called_with(mockParseWorkItemsReturnParsedFileList(), mockGetConfigReturnConfig())
+    backlog._deployGitHub.assert_called_with(Namespace(backlog='caf', repo='github', validate_only=None), None)
+
+    backlog._deployGitHub = MagicMock(return_value=None)        
+    backlog.build(Namespace(validate_only='./validate/foo'))
+    backlog._gatherWorkItems.assert_called_with('./validate/foo')
+    backlog._getConfig.assert_called_with('./validate/foo')
+    backlog._deployGitHub.assert_not_called()

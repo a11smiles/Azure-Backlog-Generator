@@ -40,7 +40,7 @@ required arguments:
 optional arguments:
   -h, --help                                        show this help message and exit
   -r {azure,github}, --repo {azure,github}          targetted repository type
-  -p PROJECT, --project PROJECT                     project name to create
+  -p PROJECT, --project PROJECT                     project (repository) name to create
   -o ORG, --org ORG                                 Optional. If the target is a GitHub organization,
                                                     specify the organization's name.
   -b {caf,tfs}, --backlog {caf,tfs}                 type of backlog to create
