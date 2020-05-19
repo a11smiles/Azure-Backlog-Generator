@@ -78,7 +78,7 @@ def test_getAndValidateJson(monkeypatch, fs):
         return True
 
     def mockValidationValidateMetadataReturnFalse(*args, **kwargs):
-        return False
+        return (False, "there's an error")
 
     monkeypatch.setattr(helpers.FileSystem, "readFile", mockFileSystemReadFileReturnNone)
     monkeypatch.setattr(helpers.Parser, "json", mockParserJsonReturnJson)
@@ -89,7 +89,9 @@ def test_getAndValidateJson(monkeypatch, fs):
     assert backlog._getAndValidateJson('.', _mockConfig()) == mockParserJsonReturnJson()
 
     monkeypatch.setattr(helpers.Validation, "validateMetadata", mockValidationValidateMetadataReturnFalse)
-    assert backlog._getAndValidateJson('.', _mockConfig()) == False
+    with pytest.raises(ValueError) as exc:
+        backlog._getAndValidateJson('.', _mockConfig())
+    assert "metadata not valid: there's an error" in str(exc.value)
 
 def test_buildWorkItems(fs):
     

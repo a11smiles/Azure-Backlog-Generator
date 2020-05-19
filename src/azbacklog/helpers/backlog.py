@@ -41,10 +41,11 @@ class Backlog():
         json = parser.json(content)
 
         val = Validation()
-        if val.validateMetadata(path, json, config):
+        validateResult = val.validateMetadata(path, json, config)
+        if validateResult == True:
             return json
         else:
-            return False
+            raise ValueError(f"metadata not valid: {validateResult[1]}")
 
     def _buildWorkItems(self, parsedFiles, config):
         epics = []
