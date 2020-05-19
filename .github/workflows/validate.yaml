@@ -42,11 +42,13 @@ jobs:
         with:
           name: coverage-report-${{ matrix.python-version }}-html
           path: htmlcov
+        if: ${{ always() }}
       - name: Upload Coverage Reports (txt)
         uses: actions/upload-artifact@v1
         with:
           name: coverage-report-${{ matrix.python-version }}-txt
           path: report.txt
+        if: ${{ always() }}
       - name: Codecov
         run: |
            bash <(curl -s https://codecov.io/bash)
