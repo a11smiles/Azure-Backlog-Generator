@@ -48,17 +48,22 @@ class GitHub():
 
     def deploy(self, config, workitems):
         if config.org != None:
+            print("┌── Creating repo (" + config.org + "/" + config.project + ")...")
             repo = self._createOrgRepo(config.org, config.project)
         else:
+            print("┌── Creating repo (" + config.repo + "/" + config.project + ")...")
             repo = self._createUserRepo(config.project)
+
+        print("├── Deleting default tags...")
+        # TODO: Delete tags
 
         projCnt = 1
         featCnt = 1
         for epic in workitems:
             if projCnt < len(workitems):
-                print('├── Creating project: ' + epic.title + " ({:02d}".format(projCnt) + "_" + epic.title + ")...")
+                print("├── Creating project: " + epic.title + " ({:02d}".format(projCnt) + "_" + epic.title + ")...")
             else:
-                print('└── Creating project: ' + epic.title + " ({:02d}".format(projCnt) + "_" + epic.title + ")...")
+                print("└── Creating project: " + epic.title + " ({:02d}".format(projCnt) + "_" + epic.title + ")...")
             project = self._createProject(repo, "{:02d}".format(projCnt) + "_" + epic.title, epic.description)
 
             if projCnt < len(workitems):
@@ -69,9 +74,9 @@ class GitHub():
             projFeatCnt = 1
             for feature in epic.features:
                 if projFeatCnt == len(epic.features):
-                    print(epicStr + '└── Creating milestone: ' + feature.title + " ({:02d}".format(featCnt) + "_" + feature.title + ")...")
+                    print(epicStr + "└── Creating milestone: " + feature.title + " ({:02d}".format(featCnt) + "_" + feature.title + ")...")
                 else:
-                    print(epicStr + '├── Creating milestone: ' + feature.title + " ({:02d}".format(featCnt) + "_" + feature.title + ")...")
+                    print(epicStr + "├── Creating milestone: " + feature.title + " ({:02d}".format(featCnt) + "_" + feature.title + ")...")
                 milestone = self._createMilestone(repo, "{:02d}".format(featCnt) + "_" + feature.title, feature.description)
                 
                 if projFeatCnt < len(epic.features):
@@ -83,9 +88,9 @@ class GitHub():
                 for story in feature.userStories:
 
                     if storyCnt == len(feature.userStories):
-                        print(featStr + '└── Creating issue: ' + story.title + "...")
+                        print(featStr + "└── Creating issue: " + story.title + "...")
                     else:
-                        print(featStr + '├── Creating issue: ' + story.title + "...")
+                        print(featStr + "├── Creating issue: " + story.title + "...")
 
                     issue = self._createIssue(repo, milestone, story.title, story.description, [])
             
