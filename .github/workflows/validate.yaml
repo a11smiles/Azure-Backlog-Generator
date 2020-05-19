@@ -30,7 +30,7 @@ jobs:
         run: |
           coverage run -m pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml
           coverage html
-          if ! coverage report -m > report.txt; then echo 'Minimum coverage not met.'; fi; exit $?
+          coverage report -m > report.txt
       - name: Upload pytest Test Results
         uses: actions/upload-artifact@v1
         with:
