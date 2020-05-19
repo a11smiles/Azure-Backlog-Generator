@@ -79,17 +79,17 @@ def test_createProject(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
-    gh._createProject(repo, 'testOrg')
+    gh._createProject(repo, 'testOrg', 'testBody')
     
-    repo.create_project.assert_called_with('testOrg')
+    repo.create_project.assert_called_with('testOrg', body='testBody')
 
 def test_createMilestone(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
-    gh._createMilestone(repo, 'testMilestone')
+    gh._createMilestone(repo, 'testMilestone', 'testDesc')
     
-    repo.create_milestone.assert_called_with('testMilestone')
+    repo.create_milestone.assert_called_with('testMilestone', description='testDesc')
 
 def test_createLabel(mockGithub):
     gh = GitHub(token='foo')
