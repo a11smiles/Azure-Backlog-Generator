@@ -1,5 +1,6 @@
 [flake8]
-max-complexity = 10
+# ignore:
+# F401: Module imported but unused
 ignore = F401
 exclude =
     .git,
@@ -7,3 +8,4 @@ exclude =
     .pytest_cache,
     build,
     dist
+max-complexity = 10
