@@ -26,6 +26,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -e .[dev]
+      - name: Lint Code
+        run: |
+          flake8
       - name: Run Tests and Generage Coverage Reports
         run: |
           coverage run -m pytest --junitxml=junit/test-results-${{ matrix.python-version }}.xml
