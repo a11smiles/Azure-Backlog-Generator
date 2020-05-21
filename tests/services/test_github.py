@@ -115,6 +115,15 @@ def test_createLabels(mockGithub):
     assert labels[0] == 'test1'
     assert labels[1] == "test2"
 
+def test_getLabels(mockGithub):
+    gh = GitHub(token='foo')
+    gh.github = mockGithub
+    repo = gh._getUser().create_repo()
+    gh._getLabels(repo)
+
+    repo.get_labels.assert_called()
+
+
 def test_createIssue(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
