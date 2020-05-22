@@ -71,7 +71,7 @@ class GitHub():
 
     def _buildDescription(self, desc, tasks):
         for task in tasks:
-            desc += f"\n"
+            desc += "\n"
             desc += f"\n- [ ] **{task.title}**"
             desc += f"\n      {task.description}"
 

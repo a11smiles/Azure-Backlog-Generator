@@ -323,6 +323,7 @@ def test_buildTask(fs):
     assert Lists.contains(task.tags, lambda tag: tag.title == "02_Folder") is True
     assert Lists.contains(task.tags, lambda tag: tag.title == "AppDev") is True
 
+
 @patch('src.azbacklog.services.github.GitHub.deploy')
 @patch('src.azbacklog.services.github.Github.__init__')
 def test_deployGitHub(patchedInit, patchedDeploy, fs):
@@ -335,18 +336,20 @@ def test_deployGitHub(patchedInit, patchedDeploy, fs):
     config = backlog._getConfig('correct')
     workItems = backlog._buildWorkItems(MockedFiles._mockParsedFileList(), config)
 
-    args = Namespace(org='testOrg', repo = None, project = 'testProject', backlog = 'correct', token = 'testToken')
+    args = Namespace(org='testOrg', repo=None, project='testProject', backlog='correct', token='testToken')
 
     backlog._deployGitHub(args, workItems)
     patchedInit.assert_called_with(args.token)
     patchedDeploy.assert_called_with(args, workItems)
 
-#@patch('src.azbacklog.services.github.GitHub.deploy')
-#@patch('src.azbacklog.services.github.Github.__init__')
-#def test_deployGitHub(patchedInit, patchedDeploy, fs):
+
+# TODO: Unit test call to deployAzure
+# @patch('src.azbacklog.services.github.GitHub.deploy')
+# @patch('src.azbacklog.services.github.Github.__init__')
+# def test_deployGitHub(patchedInit, patchedDeploy, fs):
 def test_deployAzure(fs):
-    #patchedInit.return_value = None
-    #patchedDeploy.return_value = None
+    # patchedInit.return_value = None
+    # patchedDeploy.return_value = None
 
     MockedFiles._mockCorrectFileSystem(fs)
 
@@ -354,11 +357,11 @@ def test_deployAzure(fs):
     config = backlog._getConfig('correct')
     workItems = backlog._buildWorkItems(MockedFiles._mockParsedFileList(), config)
 
-    args = Namespace(org='testOrg', repo = None, project = 'testProject', backlog = 'correct', token = 'testToken')
+    args = Namespace(org='testOrg', repo=None, project='testProject', backlog='correct', token='testToken')
 
     backlog._deployAzure(args, workItems)
-    #patchedInit.assert_called_with(args.token)
-    #patchedDeploy.assert_called_with(args, workItems)
+    # patchedInit.assert_called_with(args.token)
+    # patchedDeploy.assert_called_with(args, workItems)
 
 
 def test_build():

@@ -38,7 +38,7 @@ def mockGithub(monkeypatch):
 @patch('github.Github.__init__')
 def test_authenticate(patched):
     patched.return_value = None
-    
+
     gh = GitHub(username='test', password='test')
     patched.assert_called_with('test', 'test')
 
@@ -49,15 +49,15 @@ def test_authenticate(patched):
     patched.assert_called_with('testToken')
 
     with pytest.raises(ValueError) as exc:
-        gh = GitHub('something')
-    assert "incorrect parameters were passed" in str(exc.value)    
+        gh = GitHub('something')  # NOQA
+    assert "incorrect parameters were passed" in str(exc.value)
 
 
 def test_getUser(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     gh._getUser()
-    
+
     mockGithub.get_user.assert_called_with()
 
 
@@ -65,7 +65,7 @@ def test_getOrg(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     gh._getOrg('test')
-    
+
     mockGithub.get_organization.assert_called_with('test')
 
 
@@ -73,8 +73,8 @@ def test_createUserRepo(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     user = gh._getUser()
-    repo = gh._createUserRepo('testRepo')
-    
+    gh._createUserRepo('testRepo')
+
     user.create_repo.assert_called_with(name='testRepo', has_issues=True, auto_init=True, private=True)
 
 
@@ -82,8 +82,8 @@ def test_createOrgRepo(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     org = gh._getOrg('testOrg')
-    repo = gh._createOrgRepo('testOrg', 'testRepo')
-    
+    gh._createOrgRepo('testOrg', 'testRepo')
+
     org.create_repo.assert_called_with(name='testRepo', has_issues=True, auto_init=True, private=True)
 
 
@@ -92,7 +92,7 @@ def test_createProject(mockGithub):
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
     gh._createProject(repo, 'testOrg', 'testBody')
-    
+
     repo.create_project.assert_called_with('testOrg', body='testBody')
 
 
@@ -101,7 +101,7 @@ def test_createMilestone(mockGithub):
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
     gh._createMilestone(repo, 'testMilestone', 'testDesc')
-    
+
     repo.create_milestone.assert_called_with('testMilestone', description='testDesc')
 
 
@@ -110,7 +110,7 @@ def test_createLabel(mockGithub):
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
     gh._createLabel(repo, 'testLabel')
-    
+
     repo.create_label.assert_called_with('testLabel')
 
 
@@ -141,15 +141,6 @@ def test_getLabels(mockGithub):
     assert len(labels) == 5
 
 
-def test_createLabel(mockGithub):
-    gh = GitHub(token='foo')
-    gh.github = mockGithub
-    repo = gh._getUser().create_repo()
-    gh._createLabel(repo, 'test')
-
-    repo.create_label.assert_called_with('test')
-
-
 def test_deleteLabel(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
@@ -164,7 +155,7 @@ def test_deleteLabels(mockGithub):
     gh = GitHub(token='foo')
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
-    labels =  gh._getLabels(repo)
+    labels = gh._getLabels(repo)
     gh._deleteLabels(repo)
 
     for label in labels:
@@ -208,7 +199,7 @@ def test_createIssue(mockGithub):
     gh.github = mockGithub
     repo = gh._getUser().create_repo()
     gh._createIssue(repo, 'testMilestone', 'testTitle', 'testBody', [])
-    
+
     repo.create_issue.assert_called_with('testTitle', body='testBody', milestone='testMilestone', labels=[])
 
 
@@ -221,7 +212,7 @@ def test_buildDescription():
     task2 = Task()
     task2.title = "Test 2"
     task2.description = "This is a description 2"
-    
+
     tasks = [task1, task2]
     desc = "This is a sample feature description"
 
@@ -270,7 +261,7 @@ def test_deploy_withOrg(fs):
     assert gh._createColumns.call_count == 4
     assert gh._createMilestone.call_count == 6
     assert gh._createIssue.call_count == 4
-    assert gh._createCard.call_count == 4 
+    assert gh._createCard.call_count == 4
 
 
 def test_deploy_withRepo(fs):
@@ -308,4 +299,4 @@ def test_deploy_withRepo(fs):
     assert gh._createColumns.call_count == 4
     assert gh._createMilestone.call_count == 6
     assert gh._createIssue.call_count == 4
-    assert gh._createCard.call_count == 4 
+    assert gh._createCard.call_count == 4
