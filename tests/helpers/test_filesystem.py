@@ -1,20 +1,20 @@
 import os
 import pytest
 from pyfakefs import fake_filesystem
-from mocks import _mockCorrectFileSystem, _mockParentPathHasFileFileSystem, _mockPathHasNoMetadataFileSystem
+from tests.mockedfiles import MockedFiles
 import src.azbacklog.helpers as helpers
 
 
 def test_getFiles_CorrectFileSystem(fs):
-    _mockCorrectFileSystem(fs)
+    MockedFiles._mockCorrectFileSystem(fs)
 
     f = helpers.FileSystem()
     files = f.getFiles('./correct')
-    assert len(files) == 9
+    assert len(files) == 20
 
 
 def test_getFiles_ParentPathHasFileFileSystem(fs):
-    _mockParentPathHasFileFileSystem(fs)
+    MockedFiles._mockParentPathHasFileFileSystem(fs)
 
     f = helpers.FileSystem()
     with pytest.raises(FileExistsError) as exc:
@@ -23,7 +23,7 @@ def test_getFiles_ParentPathHasFileFileSystem(fs):
 
 
 def test_getFiles_PathHasNoMetadata(fs):
-    _mockPathHasNoMetadataFileSystem(fs)
+    MockedFiles._mockPathHasNoMetadataFileSystem(fs)
 
     f = helpers.FileSystem()
     with pytest.raises(FileNotFoundError) as exc:

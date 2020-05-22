@@ -1,19 +1,19 @@
 from mock import Mock, MagicMock
-from mocks import _mockConfig
+from tests.mockedfiles import MockedFiles
 import src.azbacklog.helpers as helpers
 
 
 def test_validateMetadata():
     v = helpers.Validation()
 
-    assert v.validateMetadata('./somepath/metadata.json', None, _mockConfig()) == (False, "metadata in './somepath/metadata.json' is empty")
+    assert v.validateMetadata('./somepath/metadata.json', None, MockedFiles._mockConfig()) == (False, "metadata in './somepath/metadata.json' is empty")
 
     v._validateTitle = MagicMock(return_value=(False, "no title"))
     assert v.validateMetadata('./somepath/metadata.json', {
         'description': 'lorem desc',
         'tags': ['01_Folder'],
         'roles': []
-    }, _mockConfig()) == (False, "no title")
+    }, MockedFiles._mockConfig()) == (False, "no title")
 
     v._validateTitle = MagicMock(return_value=True)
     v._validateDescription = MagicMock(return_value=(False, "no description"))
@@ -21,7 +21,7 @@ def test_validateMetadata():
         'title': 'lorem ipsum',
         'tags': ['01_Folder'],
         'roles': []
-    }, _mockConfig()) == (False, "no description")
+    }, MockedFiles._mockConfig()) == (False, "no description")
 
     v._validateTitle = MagicMock(return_value=True)
     v._validateDescription = MagicMock(return_value=True)
@@ -30,7 +30,7 @@ def test_validateMetadata():
         'title': 'lorem ipsum',
         'description': 'lorem desc',
         'roles': []
-    }, _mockConfig()) == (False, "no tags")
+    }, MockedFiles._mockConfig()) == (False, "no tags")
 
     v._validateTitle = MagicMock(return_value=True)
     v._validateDescription = MagicMock(return_value=True)
@@ -40,7 +40,7 @@ def test_validateMetadata():
         'title': 'lorem ipsum',
         'description': 'lorem desc',
         'tags': ['01_Folder']
-    }, _mockConfig()) == (False, "no roles")
+    }, MockedFiles._mockConfig()) == (False, "no roles")
 
     v._validateTitle = MagicMock(return_value=True)
     v._validateDescription = MagicMock(return_value=True)
@@ -51,7 +51,7 @@ def test_validateMetadata():
         'description': 'lorem desc',
         'tags': ['01_Folder'],
         'roles': []
-    }, _mockConfig()) is True
+    }, MockedFiles._mockConfig()) is True
 
 
 def test_validateTitle():
@@ -74,18 +74,18 @@ def test_validateDescription():
 
 def test_validateTags():
     v = helpers.Validation()
-    assert v._validateTags('./somepath/metadata.json', {}, _mockConfig()) == (False, "'tags' property not found in metadata './somepath/metadata.json'")
-    assert v._validateTags('./somepath/metadata.json', {'tags': 'lorem ipsum'}, _mockConfig()) == (False, "'tags' property is not in correct format in metadata './somepath/metadata.json'")
-    assert v._validateTags('./somepath/metadata.json', {'tags': ['lorem ipsum']}, _mockConfig()) == (False, "invalid tag 'lorem ipsum' in metadata './somepath/metadata.json'")
-    assert v._validateTags('./somepath/metadata.json', {'tags': ['01_Folder']}, _mockConfig()) is True
+    assert v._validateTags('./somepath/metadata.json', {}, MockedFiles._mockConfig()) == (False, "'tags' property not found in metadata './somepath/metadata.json'")
+    assert v._validateTags('./somepath/metadata.json', {'tags': 'lorem ipsum'}, MockedFiles._mockConfig()) == (False, "'tags' property is not in correct format in metadata './somepath/metadata.json'")
+    assert v._validateTags('./somepath/metadata.json', {'tags': ['lorem ipsum']}, MockedFiles._mockConfig()) == (False, "invalid tag 'lorem ipsum' in metadata './somepath/metadata.json'")
+    assert v._validateTags('./somepath/metadata.json', {'tags': ['01_Folder']}, MockedFiles._mockConfig()) is True
 
 
 def test_validateRoles():
     v = helpers.Validation()
-    assert v._validateRoles('./somepath/metadata.json', {}, _mockConfig()) == (False, "'roles' property not found in metadata './somepath/metadata.json'")
-    assert v._validateRoles('./somepath/metadata.json', {'roles': 'lorem ipsum'}, _mockConfig()) == (False, "'roles' property is not in correct format in metadata './somepath/metadata.json'")
-    assert v._validateRoles('./somepath/metadata.json', {'roles': ['lorem ipsum']}, _mockConfig()) == (False, "invalid role 'lorem ipsum' in metadata './somepath/metadata.json'")
-    assert v._validateRoles('./somepath/metadata.json', {'roles': ['AppDev']}, _mockConfig()) is True
+    assert v._validateRoles('./somepath/metadata.json', {}, MockedFiles._mockConfig()) == (False, "'roles' property not found in metadata './somepath/metadata.json'")
+    assert v._validateRoles('./somepath/metadata.json', {'roles': 'lorem ipsum'}, MockedFiles._mockConfig()) == (False, "'roles' property is not in correct format in metadata './somepath/metadata.json'")
+    assert v._validateRoles('./somepath/metadata.json', {'roles': ['lorem ipsum']}, MockedFiles._mockConfig()) == (False, "invalid role 'lorem ipsum' in metadata './somepath/metadata.json'")
+    assert v._validateRoles('./somepath/metadata.json', {'roles': ['AppDev']}, MockedFiles._mockConfig()) is True
 
 
 def test_validateConfig():

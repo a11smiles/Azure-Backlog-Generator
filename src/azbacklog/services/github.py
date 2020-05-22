@@ -70,7 +70,12 @@ class GitHub():
         return repo.create_issue(title, body=body, milestone=milestone, labels=labels)
 
     def _buildDescription(self, desc, tasks):
-        pass
+        for task in tasks:
+            desc += f"\n"
+            desc += f"\n- [ ] **{task.title}**"
+            desc += f"\n      {task.description}"
+
+        return desc
 
     def deploy(self, config, workitems):
         if config.org is not None:
@@ -118,7 +123,7 @@ class GitHub():
                     else:
                         print(folderStr + "│   ├── Creating issue: " + story.title + "...")
 
-                    issue = self._createIssue(repo, milestone, story.title, story.description, [])
+                    issue = self._createIssue(repo, milestone, story.title, self._buildDescription(story.description, story.tasks), [])
                     issues.append(issue)
 
                     storyCnt += 1

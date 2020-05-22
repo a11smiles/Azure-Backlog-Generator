@@ -1,4 +1,4 @@
-from mocks import _mockFileList, _mockParsedFileList
+from tests.mockedfiles import MockedFiles
 import src.azbacklog.helpers as helpers
 
 
@@ -27,6 +27,6 @@ def test_validString():
 
 def test_fileHierarchy():
     p = helpers.Parser()
-    parsedFiles = p.fileHierarchy(_mockFileList())
+    parsedFiles = p.fileHierarchy(MockedFiles._mockFileList())
 
-    assert parsedFiles == _mockParsedFileList()
+    assert parsedFiles == MockedFiles._mockParsedFileList()
