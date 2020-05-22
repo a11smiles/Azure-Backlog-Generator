@@ -1,13 +1,14 @@
 from github import Github
 
+
 class GitHub():
-    
+
     def __init__(self, username=None, password=None, hostname=None, token=None):
-        if username != None and password != None:
+        if username is not None and password is not None:
             self.github = Github(username, password)
-        elif hostname != None and token != None:
+        elif hostname is not None and token is not None:
             self.github = Github(base_url=f'https://{hostname}/api/v3', login_or_token=f'{token}')
-        elif token != None:
+        elif token is not None:
             self.github = Github(token)
         else:
             raise ValueError("incorrect parameters were passed")
@@ -45,7 +46,7 @@ class GitHub():
 
     def _deleteLabel(self, label):
         return label.delete()
-    
+
     def _deleteLabels(self, repo):
         labels = self._getLabels(repo)
 
@@ -72,7 +73,7 @@ class GitHub():
         pass
 
     def deploy(self, config, workitems):
-        if config.org != None:
+        if config.org is not None:
             print("┌── Creating repo (" + config.org + "/" + config.project + ")...")
             repo = self._createOrgRepo(config.org, config.project)
         else:
@@ -108,7 +109,7 @@ class GitHub():
             for feature in epic.features:
                 print(folderStr + "├── Creating milestone: " + feature.title + " ({:02d}".format(featCnt) + "_" + feature.title + ")...")
                 milestone = self._createMilestone(repo, "{:02d}".format(featCnt) + "_" + feature.title, feature.description)
-                
+
                 storyCnt = 1
                 for story in feature.userStories:
 
