@@ -23,7 +23,7 @@ setup(
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=['azbacklog'],
-    package_dir={'azbacklog': ['src', 'workitems']},
+    package_dir={'': 'src'},
     install_requires=[
         'pygithub'
     ],
