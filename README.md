@@ -34,11 +34,9 @@ usage: azbacklog [-h] -t TOKEN [-r {azure,github}] [-p PROJECT] [-o ORG] [-b {ca
 
 Generate a backlog of work items.
 
-required arguments:
-  -t TOKEN, --token TOKEN                           GitHub or Azure DevOps token
-
 optional arguments:
   -h, --help                                        show this help message and exit
+  -t TOKEN, --token TOKEN                           GitHub or Azure DevOps token
   -r {azure,github}, --repo {azure,github}          targetted repository type
   -p PROJECT, --project PROJECT                     project (repository) name to create
   -o ORG, --org ORG                                 Optional. If the target is a GitHub organization,
@@ -63,7 +61,7 @@ The previous commands will clone the repo and not only install the runtime depen
 ### Executing Locally Under Development
 Once you've installed the package locally (e.g. `-e .[dev]` in the previous command), executing the package is as simple as (include the necessary parameters outlined above in the [Create a Backlog](#Create-a-Backlog) section):
 ```bash
-./main.py
+./azbacklog
 ```
 
 ### Running Tests
@@ -109,35 +107,37 @@ Tags will be created and applied in both platforms (in GitHub as _Labels_).
 The directory structure follows a very simplistic heirarchy to fascilitate dependency creation and increase efficiency by minimizing overhead:
 ```
 .
-├── src                (source code)
-├── tests              (unit tests)
+├── src                        (source code)
+├── tests                      (unit tests)
 └── workitems
-    ├── 01_SampleEpic1
-    │   ├── metadata.json
-    │   └── 01_SampleFeature1
-    │       ├── metadata.json
-    │       └── 01_SampleStory1
-    │           ├── metadata.json
-    │           ├── 01_SampleTask1
-    │           │   └── metadata.json
-    │           └── 02_SampleTask2
-    │               └── metadata.json
-    └── 02_SampleEpic2
-        ├── metadata.json
-        ├── 01_SampleFeature1
+    └── backlog
+        ├── config.json        (backlog config)
+        ├── 01_SampleEpic1
         │   ├── metadata.json
-        │   └── 01_SampleStory1
+        │   └── 01_SampleFeature1
         │       ├── metadata.json
-        │       └── 01_SampleTask1
-        │           └── metadata.json
-        └── 02_SampleFeature2
+        │       └── 01_SampleStory1
+        │           ├── metadata.json
+        │           ├── 01_SampleTask1
+        │           │   └── metadata.json
+        │           └── 02_SampleTask2
+        │               └── metadata.json
+        └── 02_SampleEpic2
             ├── metadata.json
-            └── 01_SampleStory1
+            ├── 01_SampleFeature1
+            │   ├── metadata.json
+            │   └── 01_SampleStory1
+            │       ├── metadata.json
+            │       └── 01_SampleTask1
+            │           └── metadata.json
+            └── 02_SampleFeature2
                 ├── metadata.json
-                ├── 01_SampleTask1
-                │   └── metadata.json
-                └── 02_SampleTask2
-                    └── metadata.json
+                └── 01_SampleStory1
+                    ├── metadata.json
+                    ├── 01_SampleTask1
+                    │   └── metadata.json
+                    └── 02_SampleTask2
+                        └── metadata.json
 
 ```
 The heirarchy above follows the structure of `Epic -> Feature -> User Story -> Task`. Each folder will contain a `metadata.json` file that follows the *Work Item Format* below and child items. Task folders will not contain any child work items and should only contain its metadata.
@@ -153,7 +153,7 @@ The format of the `metadata.json` file is the following:
 }
 ```
 
-**NOTE:** _Tags_ and _Roles_  **must** be those provided in the respective list of the corresponding process. The available lists are found with the [backlog descriptions](https://github.com/Azure/Azure-Backlog-Generator/blob/master/backlogs.md#backlog-descriptions).
+**NOTE:** _Tags_ and _Roles_  **must** be those provided in the respective list of the corresponding process. The available lists are found with the [backlog descriptions](https://github.com/Azure/Azure-Backlog-Generator/blob/master/backlogs.md#backlog-descriptions) and can be updated via the backlog's `config.json` configuration file.
 
 ## Contributing
 Your experience and feedback are valuable and, therefore, your contributions are welcomed. Please create necessary issues and, optionally, pull requests for your feedback or contributions. Please adhere to the technical guidelines above when contributing to the source code.
