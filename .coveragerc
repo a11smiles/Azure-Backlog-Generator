@@ -1,10 +1,10 @@
 [run]
 omit = 
     */__init__.py
-    src/scripts/azbacklog.py
+    scripts/*
 
 source = 
-    src/
+    azbacklog/
 
 [report]
 fail_under = 95.00

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 import argparse
-import src.azbacklog.helpers as helpers
-import src.azbacklog.services as services
+import azbacklog.helpers as helpers
+import azbacklog.services as services
 
 
 def run(args):
