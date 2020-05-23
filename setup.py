@@ -18,7 +18,7 @@ with open(path.join(this_directory, 'requirements.txt'), encoding='utf-8') as r:
 workitem_files = []
 directories = glob.glob('workitems/')
 for directory in directories:
-    files = glob.glob(directory+'*')
+    files = glob.glob(directory + '*')
     workitem_files.append((directory, files))
 
 setup(
