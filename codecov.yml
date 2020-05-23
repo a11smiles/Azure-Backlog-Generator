@@ -11,7 +11,7 @@ coverage:
         flags: 
           - unit
         paths: 
-          - azbacklog
+          - src
         branches: 
           - master
         if_not_found: success
