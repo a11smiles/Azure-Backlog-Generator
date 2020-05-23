@@ -30,6 +30,9 @@ setup(
     extras_require={
         'dev': requirements
     },
-    scripts=['src/scripts/azbacklog'],
+    scripts=[
+        'src/scripts/azbacklog.py',
+        'src/scripts/azbacklog.bat'
+    ],
     python_requires='>=3.6'
 )
